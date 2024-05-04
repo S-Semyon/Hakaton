@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>612</width>
-    <height>385</height>
+    <width>610</width>
+    <height>400</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>610</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>610</width>
+    <height>400</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>TwisterFingers</string>
@@ -20,7 +32,7 @@
       <x>-20</x>
       <y>-50</y>
       <width>651</width>
-      <height>451</height>
+      <height>471</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -240,6 +252,19 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="back_3">
+        <property name="font">
+         <font>
+          <family>Cascadia Code</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Назад</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

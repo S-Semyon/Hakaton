@@ -60,6 +60,18 @@ class UserStatistic(Data):
         data["clicks"] = obj
         self.update(data)
 
+    @property
+    def errors(self) -> int:
+        """Количество ошибок"""
+        data = self.read()
+        return data["errors"]
+
+    @errors.setter
+    def errors(self, obj: Any):
+        data = self.read()
+        data["errors"] = obj
+        self.update(data)
+
 
 __all__ = (
     "UserStatistic",
