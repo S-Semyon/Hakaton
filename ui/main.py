@@ -15,6 +15,12 @@ class Ui(QMainWindow, Ui_MainWindow):
         self.statistics.clicked.connect(
             lambda: self.tabWidget.setCurrentIndex(2)
         )
+        self.btn_game.clicked.connect(
+            lambda: self.tabWidget.setCurrentIndex(3)
+        )
+        self.btn_time_game.clicked.connect(
+            lambda: self.tabWidget.setCurrentIndex(3)
+        )
 
         for btn in (self.back, self.back_2, self.back_3):
             btn.clicked.connect(

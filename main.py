@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from ui.main import Ui
 
-__VERSION__ = (0, 0, 2)
+__VERSION__ = (0, 0, 3)
 
 
 def main():
