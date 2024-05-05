@@ -4,6 +4,7 @@ from libs.config import UserStatistic
 from libs.events import Event
 from libs.timer import Timer
 from libs.twister import Twister
+from libs.compare_time import compare_time
 from ._ui.main import Ui_MainWindow
 
 
@@ -15,7 +16,7 @@ class Ui(QMainWindow, Ui_MainWindow):
         self.event = Event()
 
         self.event.add_func_press_key(
-            lambda key: self.need_click.setText(f"Нажмите {key}")
+            lambda key: self.need_click.setText(f"Зажмите {key}")
         )
         self.event.add_func_release_key(
             lambda key: self.need_release.setText(f"Отожмите {key}")
@@ -26,6 +27,7 @@ class Ui(QMainWindow, Ui_MainWindow):
 
         self.twister = Twister(self.event)
         self.timer = Timer(self.text_timer)
+        self.timer_started = False
 
         self.modes.clicked.connect(
             lambda: self.tabWidget.setCurrentIndex(1)
@@ -49,8 +51,11 @@ class Ui(QMainWindow, Ui_MainWindow):
         udata = UserStatistic()
         self.clicks.setText(f"Количество кликов: {udata.clicks}")
         self.errors.setText(f"Количество ошибок: {udata.errors}")
+        self.best_time.setText(f"Лучшее время: {udata.best_time}")
 
     def new_game(self):
+        self.need_click.setText("MainWindow", "Зажмите любую \nклавишу")
+        self.need_release.setText("Отожмите")
         self.tabWidget.setCurrentIndex(3)
         self.text_timer.setText("")
         self.twister.start()
@@ -62,5 +67,8 @@ class Ui(QMainWindow, Ui_MainWindow):
 
     def game_over(self):
         self.twister.stop()
+        self.twister = Twister(self.event)
+        if compare_time(self.timer.current_time, UserStatistic().best_time):
+            UserStatistic().best_time = self.timer.current_time
         self.tabWidget.setCurrentIndex(4)
         self.update_statistic()

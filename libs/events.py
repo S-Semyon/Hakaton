@@ -5,7 +5,8 @@ from libs.config import UserStatistic
 
 
 class Event:
-    """Обработчик ивентов"""
+    """Обработчик ивентов
+    Ивенты выполняются по очереди"""
 
     def __init__(self):
         self.UserStatistic = UserStatistic()
@@ -29,18 +30,15 @@ class Event:
         """Вызвать ивент 'клавишу нужно зажать'"""
         self.UserStatistic.clicks += 1
         for func in self.__need_press_key__queue:
-            th = Thread(target=func, args=(key, ))
-            th.start()
+            func(key)
 
     def need_release_key(self, key: str):
         """Вызвать ивент 'клавиша нужно отжать'"""
         for func in self.__need_release_key__queue:
-            th = Thread(target=func, args=(key, ))
-            th.start()
+            func(key)
 
     def game_over(self):
         """Вызвать ивент 'проигрыш'"""
         self.UserStatistic.errors += 1
         for func in self.__game_over__queue:
-            th = Thread(target=func)
-            th.start()
+            func()

@@ -1,6 +1,7 @@
-from PyQt5.QtWidgets import QLabel
-from PyQt5.QtCore import QTimer, QTime
 import time
+
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtCore import QTimer, QTime, QThread
 
 
 class Timer:
@@ -11,6 +12,12 @@ class Timer:
         self.elapsed_time = 0
         self.start_time = None
         self.label = label
+        self.current_time = "00:00:00"
+
+    @property
+    def is_active(self):
+        """Активен ли таймер"""
+        return self.timer.isActive()
 
     def start_timer(self):
         """Запуск таймера"""
@@ -20,6 +27,7 @@ class Timer:
     def update_timer(self):
         """Обновление таймера"""
         self.elapsed_time = time.perf_counter() - self.start_time
+        self.current_time = QTime().fromMSecsSinceStartOfDay(int(self.elapsed_time*1000)).toString()
         self.label.setText(
-            QTime().fromMSecsSinceStartOfDay(int(self.elapsed_time*1000)).toString()
+            self.current_time
         )
