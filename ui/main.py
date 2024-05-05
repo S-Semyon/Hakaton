@@ -54,13 +54,15 @@ class Ui(QMainWindow, Ui_MainWindow):
         self.best_time.setText(f"Лучшее время: {udata.best_time}")
 
     def new_game(self):
-        self.need_click.setText("MainWindow", "Зажмите любую \nклавишу")
+        self.need_click.setText("Зажмите любую \nклавишу")
         self.need_release.setText("Отожмите")
         self.tabWidget.setCurrentIndex(3)
         self.text_timer.setText("")
         self.twister.start()
 
     def new_time_game(self):
+        self.need_click.setText("Зажмите любую \nклавишу")
+        self.need_release.setText("Отожмите")
         self.tabWidget.setCurrentIndex(3)
         self.timer.start_timer()
         self.twister.start()
