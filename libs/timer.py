@@ -23,4 +23,3 @@ class Timer:
         self.label.setText(
             QTime().fromMSecsSinceStartOfDay(int(self.elapsed_time*1000)).toString()
         )
-        print(self.elapsed_time)

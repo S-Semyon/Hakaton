@@ -46,7 +46,7 @@ class UserStatistic(Data):
     """Статистика пользователя"""
 
     file = Path("userStatistic.json")
-    data = {"clicks": 0, "errors": 0}
+    data = {"clicks": 0, "errors": 0, "best_time": 0}
 
     @property
     def clicks(self) -> int:
@@ -70,6 +70,18 @@ class UserStatistic(Data):
     def errors(self, obj: Any):
         data = self.read()
         data["errors"] = obj
+        self.update(data)
+
+    @property
+    def best_time(self) -> int:
+        """Лучшее время"""
+        data = self.read()
+        return data["best_time"]
+
+    @best_time.setter
+    def best_time(self, obj: Any):
+        data = self.read()
+        data["best_time"] = obj
         self.update(data)
 
 
